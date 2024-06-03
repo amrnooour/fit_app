@@ -1,4 +1,3 @@
-import 'package:fit_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {

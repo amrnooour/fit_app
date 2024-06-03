@@ -1,9 +1,9 @@
 import 'package:fit_app/core/utils/styles.dart';
+import 'package:fit_app/features/home/presentation/views/home_view.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_cubit.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_states.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_text_field.dart';
-import 'package:fit_app/features/second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +24,7 @@ class CustomContainer extends StatelessWidget {
               ? Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Second(),
+                    builder: (context) => const HomeView(),
                   ))
               : ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Inccorect code")));

@@ -7,18 +7,8 @@ class CodeModel {
 
   CodeModel.fromJson(Map<String, dynamic> json) {
     value = json['value'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ?Data.fromJson(json['data']) : null;
     code = json['code'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['value'] = this.value;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    data['code'] = this.code;
-    return data;
   }
 }
 
@@ -89,40 +79,12 @@ class Data {
     if (json['packages'] != null) {
       packages = <Packages>[];
       json['packages'].forEach((v) {
-        packages!.add(new Packages.fromJson(v));
+        packages!.add(Packages.fromJson(v));
       });
     }
     settings = json['settings'];
     token = json['token'];
     firebaseTopic = json['firebase_topic'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['mobile'] = this.mobile;
-    data['second_mobile'] = this.secondMobile;
-    data['mobile_country'] = this.mobileCountry;
-    data['second_mobile_country'] = this.secondMobileCountry;
-    data['email'] = this.email;
-    data['country_code'] = this.countryCode;
-    data['second_country_code'] = this.secondCountryCode;
-    data['code'] = this.code;
-    data['dob'] = this.dob;
-    data['gender'] = this.gender;
-    data['religion'] = this.religion;
-    data['username'] = this.username;
-    data['image'] = this.image;
-    data['client_invitation_code'] = this.clientInvitationCode;
-    data['status'] = this.status;
-    if (this.packages != null) {
-      data['packages'] = this.packages!.map((v) => v.toJson()).toList();
-    }
-    data['settings'] = this.settings;
-    data['token'] = this.token;
-    data['firebase_topic'] = this.firebaseTopic;
-    return data;
   }
 }
 
@@ -158,19 +120,5 @@ class Packages {
     startAtText = json['start_at_text'];
     expireAtText = json['expire_at_text'];
     remainingDays = json['remaining_days'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['status'] = this.status;
-    data['status_note'] = this.statusNote;
-    data['paid_amount'] = this.paidAmount;
-    data['start_at'] = this.startAt;
-    data['expire_at'] = this.expireAt;
-    data['start_at_text'] = this.startAtText;
-    data['expire_at_text'] = this.expireAtText;
-    data['remaining_days'] = this.remainingDays;
-    return data;
   }
 }

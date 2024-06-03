@@ -22,15 +22,28 @@ class DioConsumer extends ApiConsumer {
       print(e.toString());
     }
   }
-  
+
   @override
-  Future code(String path, {Object? data, Map<String, dynamic>? queryParameters}) async{
+  Future code(String path,
+      {Object? data, Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await dio.post(
         path,
         data: data,
         queryParameters: queryParameters,
       );
+      return response.data;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  Future get(String path,
+      {Object? data, Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response =
+          await dio.get(path, data: data, queryParameters: queryParameters);
       return response.data;
     } catch (e) {
       print(e.toString());

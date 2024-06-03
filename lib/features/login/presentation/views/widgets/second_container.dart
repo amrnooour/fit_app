@@ -21,13 +21,13 @@ class SecondContainer extends StatelessWidget {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         } else if (state is LoginSuccess) {
-          state.loginModel.data!.isExist == true
-              ? Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SecondLoginView(),
-                  ))
-              : ScaffoldMessenger.of(context).showSnackBar(
+          state.loginModel.data!.isExist == true?
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SecondLoginView(),
+              ))
+           : ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Invalid phone number")));
         }
       },
@@ -79,7 +79,8 @@ class SecondContainer extends StatelessWidget {
                     child: state is LoginLoading
                         ? const Center(child: CircularProgressIndicator())
                         : CustomLoginButton(
-                            text: "Login", isEnabled: context.read<LoginCubit>().isEnable)),
+                            text: "Login",
+                            isEnabled: context.read<LoginCubit>().isEnable)),
               ],
             ),
           ),

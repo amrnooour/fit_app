@@ -31,11 +31,9 @@ class _FirstContainerState extends State<FirstContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SizedBox(
-          width: widget.width,
-          height: widget.height,
-          child: VideoPlayer(controller)),
-    );
+    return SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: VideoPlayer(controller));
   }
 }

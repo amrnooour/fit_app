@@ -1,4 +1,4 @@
-import 'package:fit_app/features/login/data/models/Login_model.dart';
+import 'package:fit_app/features/login/data/models/login_model.dart';
 import 'package:fit_app/features/login/data/models/code_model.dart';
 
 class LoginStates {}

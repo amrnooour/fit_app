@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:fit_app/core/api/dio_consumer.dart';
+import 'package:fit_app/core/cache/cache_helper.dart';
 import 'package:fit_app/core/utils/constsnts.dart';
-import 'package:fit_app/features/login/data/models/Login_model.dart';
+import 'package:fit_app/features/login/data/models/login_model.dart';
 import 'package:fit_app/features/login/data/models/code_model.dart';
+
 
 class LoginRepo {
   final DioConsumer dioConsumer;
@@ -19,14 +21,14 @@ class LoginRepo {
     }
   }
 
-  Future<Either<String, CodeModel>> loginCode({required String phone,required String code}) async {
+  Future<Either<String, CodeModel>> loginCode(
+      {required String phone, required String code}) async {
     try {
-      final response = await dioConsumer
-          .post(Constants.inputCode, data: {
-            Constants.mobile: phone,
-            Constants.code : code
-            });
+      final response = await dioConsumer.post(Constants.inputCode,
+          data: {Constants.mobile: phone, Constants.code: code});
       final user = CodeModel.fromJson(response);
+      final decodedToken = user.data!.token;
+      CacheHelper().saveData(key: Constants.token, value: decodedToken);
       return right(user);
     } catch (e) {
       return left(e.toString());
