@@ -2,7 +2,7 @@ import 'package:fit_app/core/utils/constsnts.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_states.dart';
 import 'package:fit_app/features/home/presentation/views/widgets/custom_item_article.dart';
-import 'package:fit_app/features/home/presentation/views/widgets/custom_loading_container.dart';
+import 'package:fit_app/features/home/presentation/views/widgets/custom_shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,9 +11,11 @@ class CustomListArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * .6,
+      width: width,
+      height: height * .6,
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
           if (state is HomeFailure) {
@@ -33,7 +35,17 @@ class CustomListArticle extends StatelessWidget {
                       name: state.homeModel.data.articles[index].title,
                       subTitle: state.homeModel.data.articles[index].date),
                 )
-              : const CustomLoadingContainer();
+              : ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (context, index) => 
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomShimmerLoading(
+                width: width* .6,
+                height: height * .25
+              ),
+            ),);
         },
       ),
     );

@@ -11,7 +11,9 @@ class LoginViewBody extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
-        FirstContainer(height: height * 3, width: width),
+        Positioned(
+          top: 0,
+          child: FirstContainer(height: height * .4, width: width)),
         Positioned(
             bottom: 0,
             child: SecondContainer(
