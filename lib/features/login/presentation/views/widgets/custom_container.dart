@@ -18,7 +18,7 @@ class CustomContainer extends StatelessWidget {
       listener: (context, state) {
         if (state is CodeFailure) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+              .showSnackBar(const SnackBar(content: Text("Inccorect code")));
         } else if (state is CodeSuccess) {
           state.codeModel.value == true
               ? Navigator.push(

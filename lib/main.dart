@@ -12,9 +12,9 @@ import 'package:fit_app/features/login/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper().init();
+  await CacheHelper().init();
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
               LoginCubit(LoginRepo(dioConsumer: DioConsumer(dio: Dio()))),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(homeRepo: HomeRepo(dioConsumer: DioConsumer(dio: Dio()))),
+          create: (context) => HomeCubit(
+              homeRepo: HomeRepo(dioConsumer: DioConsumer(dio: Dio()))),
         )
       ],
       child: MaterialApp(
