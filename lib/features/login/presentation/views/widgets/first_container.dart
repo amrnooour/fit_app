@@ -14,7 +14,7 @@ class FirstContainer extends StatefulWidget {
 class _FirstContainerState extends State<FirstContainer> {
   late VideoPlayerController controller;
   void initState() {
-    controller = VideoPlayerController.asset(AppAssets.splah2);
+    controller = VideoPlayerController.asset(AppAssets.loginVideo);
     controller.initialize().then((value) {
       controller.play();
       controller.setLooping(true);

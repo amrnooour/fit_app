@@ -1,7 +1,7 @@
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/core/utils/styles.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_cubit.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_states.dart';
-import 'package:fit_app/features/login/presentation/views/second_login_view.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_input.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +22,7 @@ class SecondContainer extends StatelessWidget {
               .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         } else if (state is LoginSuccess) {
           state.loginModel.data!.isExist == true?
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SecondLoginView(),
-              ))
+          customReplacementNavigate(context, "/secondLoginView")
            : ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Invalid phone number")));
         }

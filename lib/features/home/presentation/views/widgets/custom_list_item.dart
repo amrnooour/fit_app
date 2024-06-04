@@ -64,8 +64,8 @@ class CustomListItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(
                     AppAssets.logo,
-                    height: 70,
-                    width: 70,
+                    height: 40,
+                    width: 40,
                     fit: BoxFit.fill,
                   ),
                 ),

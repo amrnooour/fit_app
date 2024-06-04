@@ -1,14 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:fit_app/core/api/dio_consumer.dart';
 import 'package:fit_app/core/cache/cache_helper.dart';
-import 'package:fit_app/core/utils/constsnts.dart';
+import 'package:fit_app/core/routes/app_router.dart';
 import 'package:fit_app/core/utils/simple_bloc_observer.dart';
 import 'package:fit_app/features/home/data/repos/home_repo.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
-import 'package:fit_app/features/home/presentation/views/home_view.dart';
 import 'package:fit_app/features/login/data/repos/login_repo.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_cubit.dart';
-import 'package:fit_app/features/login/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var token = CacheHelper().getData(key: Constants.token);
-    print(token);
+    
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -37,9 +34,9 @@ class MyApp extends StatelessWidget {
               homeRepo: HomeRepo(dioConsumer: DioConsumer(dio: Dio()))),
         )
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        home: token == null ? const LoginView() : const HomeView(),
+        routerConfig: router,
       ),
     );
   }

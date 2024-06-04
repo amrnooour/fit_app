@@ -1,5 +1,5 @@
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/core/utils/styles.dart';
-import 'package:fit_app/features/home/presentation/views/home_view.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_cubit.dart';
 import 'package:fit_app/features/login/presentation/cubit/login_states.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
@@ -21,11 +21,7 @@ class CustomContainer extends StatelessWidget {
               .showSnackBar(const SnackBar(content: Text("Inccorect code")));
         } else if (state is CodeSuccess) {
           state.codeModel.value == true
-              ? Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeView(),
-                  ))
+              ? customReplacementNavigate(context, "/homeView")
               : ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Inccorect code")));
         } else if (state is CodeLoading) {

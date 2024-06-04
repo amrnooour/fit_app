@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
                   width: 60,
                   decoration: const BoxDecoration(
                       color: Colors.red),
-                  child: Image.asset(AppAssets.logo,fit: BoxFit.fill,)
+                  child: Image.asset(AppAssets.logo,)
                 ),
               ),
             ),
@@ -46,12 +46,9 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: Icon(
-                Icons.notifications_sharp,
-                size: 30,
-              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Image.asset(AppAssets.notification),
             )
           ],
         ),
