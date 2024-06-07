@@ -15,4 +15,20 @@ abstract class AppAssets {
   static const menuActive = "assets/images/menuActive.png";
   static const workoutActive = "assets/images/workoutActive.png";
   static const activeIcon = "assets/images/activeIcon.png";
+
+
+  static const editProfile = "assets/images/Profile.png";
+  static const previousTest = "assets/images/pervious.png";
+  static const feedBack = "assets/images/feedback.png";
+  static const workoutProram = "assets/images/workoutMenu.png";
+  static const weightLog = "assets/images/weight.png";
+  static const carioesCalculator = "assets/images/calculator.png";
+  static const health = "assets/images/Like.png";
+  static const terms = "assets/images/Lock.png";
+  static const meals = "assets/images/world.png";
+  static const transaction = "assets/images/transaction.png";
+
+  static const wave = "assets/images/wave.png";
+
+
 }

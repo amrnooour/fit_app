@@ -15,7 +15,6 @@ class HomeRepo {
             "X-Tanant": "sst",
             "Accept-Language": "en"
           });
-      print(response);
       final user = HomeModel.fromJson(response);
       return right(user);
     } catch (e) {

@@ -14,4 +14,7 @@ abstract class Styles {
   static const name = TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w500);
   static const description = TextStyle(color: Colors.white,fontSize: 14);
 
+  static const hey = TextStyle(color: Colors.black,fontSize: 24,fontWeight: FontWeight.w700);
+
+
 }

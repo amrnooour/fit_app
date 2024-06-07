@@ -10,6 +10,7 @@ abstract class Constants {
   static const checkMobile = "domains/auth/check-mobile";
   static const inputCode = "domains/auth/user";
   static const homeData = "data/screens/home";
+  static const updateProfile = "domains/auth/update-profile";
   static const mobile = "mobile";
   static const code = "code";
   static const token = "token";
@@ -19,7 +20,6 @@ abstract class Constants {
       "https://st2.depositphotos.com/2972641/6060/i/450/depositphotos_60600635-stock-photo-closeup-of-a-muscular-young.jpg";
   static const articleImage =
       "https://fatstacksblog.com/wp-content/uploads/2019/11/Person-writing-article-nov26.jpg";
-      
 
   static const List<Widget> tabs = [
     HomeViewBody(),

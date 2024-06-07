@@ -22,7 +22,7 @@ class SecondContainer extends StatelessWidget {
               .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         } else if (state is LoginSuccess) {
           state.loginModel.data!.isExist == true?
-          customReplacementNavigate(context, "/secondLoginView")
+          customNavigation(context, "/secondLoginView")
            : ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Invalid phone number")));
         }
