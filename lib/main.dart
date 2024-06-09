@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           create: (context) => HomeCubit(
               homeRepo: HomeRepo(dioConsumer: DioConsumer(dio: Dio()))),
         ),
-        BlocProvider(create: (context) => SettingsCubit(Dio()),)
+        BlocProvider(create: (context) => SettingsCubit(SettingsRepo(dioConsumer: DioConsumer(dio: Dio()))),)
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

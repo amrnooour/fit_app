@@ -1,33 +1,51 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:fit_app/core/cache/cache_helper.dart';
-import 'package:fit_app/core/functions/upload_image_to_api.dart';
-import 'package:fit_app/features/settings/data/models/update_model.dart';
+import 'package:fit_app/features/settings/data/repos/settings_repo.dart';
 import 'package:fit_app/features/settings/presentation/cubit/settings_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SettingsCubit extends Cubit<SettingsStates> {
-  Dio dio;
-  SettingsCubit(this.dio) : super(SettingsInitial());
+  SettingsRepo settingsRepo;
+  SettingsCubit(this.settingsRepo) : super(SettingsInitial());
 
   XFile? profilePic;
   TextEditingController name = TextEditingController();
+  bool isEnable = false;
+  String editedName = "";
+  String image = "";
 
   uploadProfileImage(XFile image) {
     profilePic = image;
     emit(UploadImage());
   }
 
-  /*updateInfo() async {
+  updateInfo() async {
     emit(SettingsLoading());
     final response = await settingsRepo.updateProfile(
-        name: name.text, /*profilePic: profilePic!*/);
+        name: name.text, profilePic: profilePic);
     response.fold((error) => emit(SettingsFailure(errorMessage: error)),
-        (success) => emit(SettingsSuccess(updateModel: success)));
-  }*/
-  updateInfo() async {
+        (success) {
+      emit(SettingsSuccess());
+      editedName = success.data.name;
+      image = success.data.image;
+      CacheHelper().saveData(key: "image", value: image);
+      CacheHelper().saveData(key: "editedName", value: editedName);
+      name.text = "";
+      isEnable = false;
+    });
+  }
+
+  enableButton() {
+    if (name.text.isNotEmpty) {
+      isEnable = true;
+    } else {
+      isEnable = false;
+    }
+    emit(SettingsEnable());
+  }
+
+  /*updateInfo() async {
     var image = await uploadImageToAPI(profilePic!);
     var formData =
         FormData.fromMap({"name": name.text, "_method": "put", "image": image});
@@ -49,5 +67,5 @@ class SettingsCubit extends Cubit<SettingsStates> {
     } catch (e) {
       emit(SettingsFailure(errorMessage: e.toString()));
     }
-  }
+  }*/
 }

@@ -10,12 +10,13 @@ class DioConsumer extends ApiConsumer {
 
   @override
   Future post(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters,bool isFromData = false,}) async {
+      {dynamic data, Map<String, dynamic>? queryParameters,bool isFromData = false,Map<String, dynamic>? headers}) async {
     try {
       final response = await dio.post(
         path,
         data: isFromData?FormData.fromMap(data): data,
         queryParameters: queryParameters,
+        options: Options(headers: headers)
       );
       return response.data;
     } catch (e) {

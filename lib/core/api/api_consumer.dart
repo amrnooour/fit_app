@@ -4,6 +4,7 @@ abstract class ApiConsumer {
     dynamic data,
     Map<String, dynamic>? queryParameters,
     bool isFromData = false,
+    Map<String,dynamic>? headers
   });
   Future<dynamic> code(
     String path, {

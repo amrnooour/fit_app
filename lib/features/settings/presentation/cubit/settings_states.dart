@@ -7,9 +7,6 @@ class SettingsInitial extends SettingsStates {}
 class SettingsLoading extends SettingsStates {}
 
 class SettingsSuccess extends SettingsStates {
-  final UpdateModel updateModel;
-
-  SettingsSuccess({required this.updateModel});
 }
 
 class SettingsFailure extends SettingsStates {
@@ -19,3 +16,5 @@ class SettingsFailure extends SettingsStates {
 }
 
 class UploadImage extends SettingsStates {}
+class SettingsEnable extends SettingsStates {}
+
