@@ -10,8 +10,6 @@ class HomeBottomNav extends HomeStates {}
 class HomeLoading extends HomeStates {}
 
 class HomeSuccess extends HomeStates {
-  final HomeModel homeModel;
-  HomeSuccess(this.homeModel);
 }
 
 class HomeFailure extends HomeStates {
@@ -22,9 +20,6 @@ class HomeFailure extends HomeStates {
 class StoresLoading extends HomeStates {}
 
 class StoresSuccess extends HomeStates {
-  final SuccessStoresModel storesModel;
-
-  StoresSuccess({required this.storesModel});
 }
 
 class StoresFailure extends HomeStates {

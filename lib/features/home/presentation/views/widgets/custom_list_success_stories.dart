@@ -1,4 +1,6 @@
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/core/utils/constsnts.dart';
+import 'package:fit_app/features/home/data/models/stories_details_model.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_states.dart';
 import 'package:fit_app/features/home/presentation/views/widgets/custom_item_success_stories.dart';
@@ -11,6 +13,7 @@ class CustomListSuccessStories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<HomeCubit>();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SizedBox(
@@ -32,13 +35,23 @@ class CustomListSuccessStories extends StatelessWidget {
           return state is HomeSuccess
               ? ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.homeModel.data.successStories.length,
+                  itemCount: cubit.homeModel!.data.successStories.length,
                   itemBuilder: (context, index) => CustomItemSuccessStories(
+                      onTap: () {
+                        customNavigation(
+                          context,
+                          "/detailsStories",
+                          extra: StoriesDetailsModel(
+                            image: Constants.networkImage1,
+                             clientName: cubit.homeModel!.data.successStories[index].clientName,
+                              subTitle: cubit.homeModel!.data.successStories[index].subtitle)
+                        );
+                      },
                       imageUrl: Constants.networkImage1,
-                      name:
-                          state.homeModel.data.successStories[index].clientName,
+                      name: cubit
+                          .homeModel!.data.successStories[index].clientName,
                       subTitle:
-                          state.homeModel.data.successStories[index].subtitle),
+                          cubit.homeModel!.data.successStories[index].subtitle),
                 )
               : ListView.builder(
                   scrollDirection: Axis.horizontal,

@@ -11,6 +11,7 @@ class CustomListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<HomeCubit>();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -32,20 +33,17 @@ class CustomListView extends StatelessWidget {
             child: state is HomeSuccess
                 ? ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: state.homeModel.data.sliders.length,
+                    itemCount: cubit.homeModel!.data.sliders.length,
                     itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: CustomListItem(
                               imageUrl: index == 0
                                   ? Constants.networkImage
-                                  : state
-                                      .homeModel.data.sliders[index].media.url,
-                              title: state.homeModel.data.sliders[index].title,
-                              name: state.homeModel.data.sliders[index].name,
-                              description: state
-                                  .homeModel.data.sliders[index].description,
-                              textButton: state
-                                  .homeModel.data.sliders[index].buttonText),
+                                  : cubit.homeModel!.data.sliders[index].media.url,
+                              title: cubit.homeModel!.data.sliders[index].title,
+                              name: cubit.homeModel!.data.sliders[index].name,
+                              description: cubit.homeModel!.data.sliders[index].description,
+                              textButton: cubit.homeModel!.data.sliders[index].buttonText),
                         ))
                 : ListView.builder(
                     scrollDirection: Axis.horizontal,

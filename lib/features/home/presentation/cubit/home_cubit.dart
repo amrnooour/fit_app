@@ -1,3 +1,4 @@
+import 'package:fit_app/features/home/data/models/home_model.dart';
 import 'package:fit_app/features/home/data/models/success_stories_model.dart';
 import 'package:fit_app/features/home/data/repos/home_repo.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_states.dart';
@@ -9,6 +10,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
   int currentTabIndex = 0;
   SuccessStoresModel? storesModel;
+  HomeModel? homeModel;
 
   changeBottonNavIndex(int index) {
     currentTabIndex = index;
@@ -18,8 +20,10 @@ class HomeCubit extends Cubit<HomeStates> {
   fetchHomeData() async {
     emit(HomeLoading());
     final response = await homeRepo.getUser();
-    response.fold((error) => emit(HomeFailure(error)),
-        (success) => emit(HomeSuccess(success)));
+    response.fold((error) => emit(HomeFailure(error)), (success) {
+      homeModel = success;
+      emit(HomeSuccess());
+    });
   }
 
   fetchSuccessStores() async {
@@ -27,7 +31,7 @@ class HomeCubit extends Cubit<HomeStates> {
     final response = await homeRepo.getSuccessStores();
     response.fold((error) => emit(StoresFailure(error)), (success) {
       storesModel = success;
-      emit(StoresSuccess(storesModel: success));
+      emit(StoresSuccess());
     });
   }
 }

@@ -11,6 +11,7 @@ class CustomListArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<HomeCubit>();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SizedBox(
@@ -32,11 +33,11 @@ class CustomListArticle extends StatelessWidget {
           return state is HomeSuccess
               ? ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.homeModel.data.articles.length,
+                  itemCount: cubit.homeModel!.data.articles.length,
                   itemBuilder: (context, index) => CustomItemArticle(
                       imageUrl: Constants.articleImage,
-                      name: state.homeModel.data.articles[index].title,
-                      subTitle: state.homeModel.data.articles[index].date),
+                      name: cubit.homeModel!.data.articles[index].title,
+                      subTitle: cubit.homeModel!.data.articles[index].date),
                 )
               : ListView.builder(
                   scrollDirection: Axis.horizontal,

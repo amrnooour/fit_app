@@ -47,9 +47,9 @@ class _SeeMoreStoriesViewBodyState extends State<SeeMoreStoriesViewBody> {
                           onTap: () {
                             customNavigation(context, "/detailsStories",
                             extra: StoriesDetailsModel(
-                              image: state.storesModel.data.items[index].image,
-                              clientName: state.storesModel.data.items[index].clientName,
-                              subTitle: state.storesModel.data.items[index].subtitle
+                              image: cubit.storesModel!.data.items[index].image,
+                              clientName: cubit.storesModel!.data.items[index].clientName,
+                              subTitle: cubit.storesModel!.data.items[index].subtitle
                             ));
                           },
                           height1: height * .15,
