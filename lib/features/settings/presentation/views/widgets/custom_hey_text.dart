@@ -11,7 +11,8 @@ class CustomHeyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = CacheHelper().getData(key: "editedName");
+    final nameLogin = CacheHelper().getData(key: "name");
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 33),
       child: Column(
@@ -27,7 +28,7 @@ class CustomHeyText extends StatelessWidget {
                 builder: (context, state) {
                   return Text(
                     state is SettingsSuccess?"${context.read<SettingsCubit>().editedName}! " 
-                    :"$name!",
+                    :"$nameLogin!",
                     style: Styles.hey.copyWith(fontWeight: FontWeight.w400),
                   );
                 },

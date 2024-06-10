@@ -1,3 +1,4 @@
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:fit_app/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:fit_app/features/home/presentation/views/widgets/custom_column_of_text.dart';
@@ -39,14 +40,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             const SizedBox(
               height: 30,
             ),
-            const CustomColumnOfText(
+            CustomColumnOfText(
+              onTap: () {
+                customNavigation(context, "/seeMoreStories");
+              },
               title: "Succeess Stories",
               subTitle: "SST transformations.",
             ),
             const CustomListSuccessStories(),
             const CustomColumnOfText(
-              title: "Articles",
-               subTitle: "Top SST topics."),
+                title: "Articles", subTitle: "Top SST topics."),
             const CustomListArticle(),
           ],
         ),

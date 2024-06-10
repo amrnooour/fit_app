@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 class CustomColumnOfText extends StatelessWidget {
   final String title;
   final String subTitle;
+  final void Function()? onTap;
   const CustomColumnOfText(
-      {super.key, required this.title, required this.subTitle});
+      {super.key, required this.title, required this.subTitle, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,11 @@ class CustomColumnOfText extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              const CustomButtonShowMore(),
+              GestureDetector(
+                onTap: onTap,
+                child: const CustomButtonShowMore(
+                ),
+              ),
             ],
           ),
           const SizedBox(

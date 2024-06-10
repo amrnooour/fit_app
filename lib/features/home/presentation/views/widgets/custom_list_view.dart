@@ -15,42 +15,47 @@ class CustomListView extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        if (state is HomeFailure) {
+        if (state is StoresFailure) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         } else if (state is HomeLoading) {
-          const Center(child: CircularProgressIndicator(color: Colors.black,));
+          const Center(
+              child: CircularProgressIndicator(
+            color: Colors.black,
+          ));
         }
       },
       builder: (context, state) {
         return SizedBox(
-          width: width,
-          height: height * .4,
-          child: state is HomeSuccess? ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: state.homeModel.data.sliders.length,
-            itemBuilder: (context, index) =>
-                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: CustomListItem(
-                      imageUrl: index==0?Constants.networkImage:state.homeModel.data.sliders[index].media.url,
-                      title: state.homeModel.data.sliders[index].title,
-                      name: state.homeModel.data.sliders[index].name,
-                      description: state.homeModel.data.sliders[index].description,
-                      textButton: state.homeModel.data.sliders[index].buttonText),
-                )
-          ) : ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            itemBuilder: (context, index) => 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: CustomShimmerLoading(
-                width: width* .8,
-                height: height * .4
-              ),
-            ),)
-        );
+            width: width,
+            height: height * .4,
+            child: state is HomeSuccess
+                ? ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.homeModel.data.sliders.length,
+                    itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: CustomListItem(
+                              imageUrl: index == 0
+                                  ? Constants.networkImage
+                                  : state
+                                      .homeModel.data.sliders[index].media.url,
+                              title: state.homeModel.data.sliders[index].title,
+                              name: state.homeModel.data.sliders[index].name,
+                              description: state
+                                  .homeModel.data.sliders[index].description,
+                              textButton: state
+                                  .homeModel.data.sliders[index].buttonText),
+                        ))
+                : ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomShimmerLoading(
+                          width: width * .8, height: height * .4),
+                    ),
+                  ));
       },
     );
   }

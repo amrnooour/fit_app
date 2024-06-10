@@ -1,4 +1,5 @@
 import 'package:fit_app/core/cache/cache_helper.dart';
+import 'package:fit_app/core/utils/constsnts.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_text_field.dart';
 import 'package:fit_app/features/settings/presentation/cubit/settings_cubit.dart';
@@ -13,10 +14,12 @@ class CustomInfoEditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<SettingsCubit>();
-    final name = CacheHelper().getData(key: "editedName");
+    final name = CacheHelper().getData(key: "name");
     final phone = CacheHelper().getData(key: "phone");
     final code = CacheHelper().getData(key: "code");
     final photo = CacheHelper().getData(key: "image");
+    final photoLogin = CacheHelper().getData(key: "imageLogin");
+
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 33),
@@ -42,7 +45,7 @@ class CustomInfoEditProfile extends StatelessWidget {
                       ? PickImageWidget(
                           image: cubit.image,
                         )
-                      : PickImageWidget(image: photo)),
+                      : PickImageWidget(image: photo??photoLogin)),
               const SizedBox(
                 height: 15,
               ),

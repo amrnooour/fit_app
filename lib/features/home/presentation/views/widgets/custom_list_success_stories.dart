@@ -18,7 +18,7 @@ class CustomListSuccessStories extends StatelessWidget {
       height: height * .4,
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
-          if (state is HomeFailure) {
+          if (state is StoresFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errorMessage)));
           } else if (state is HomeLoading) {
@@ -41,16 +41,14 @@ class CustomListSuccessStories extends StatelessWidget {
                           state.homeModel.data.successStories[index].subtitle),
                 )
               : ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            itemBuilder: (context, index) => 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: CustomShimmerLoading(
-                width: width* .6,
-                height: height * .25
-              ),
-            ),);
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: CustomShimmerLoading(
+                        width: width * .6, height: height * .25),
+                  ),
+                );
         },
       ),
     );

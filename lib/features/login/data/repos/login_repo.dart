@@ -30,10 +30,13 @@ class LoginRepo {
       final name = user.data!.name;
       final mobile = user.data!.mobile;
       final yourCode = user.data!.code;
+      final image = user.data!.image;
+
 
 
       CacheHelper().saveData(key: Constants.token, value: decodedToken);
       CacheHelper().saveData(key: "name", value: name);
+      CacheHelper().saveData(key: "imageLogin", value: image);
       CacheHelper().saveData(key: "phone", value: mobile);
       CacheHelper().saveData(key: "code", value: yourCode);
 
