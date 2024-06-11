@@ -48,8 +48,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               subTitle: "SST transformations.",
             ),
             const CustomListSuccessStories(),
-            const CustomColumnOfText(
-                title: "Articles", subTitle: "Top SST topics."),
+            CustomColumnOfText(
+                onTap: () {
+                  customNavigation(context, "/seeMoreArticles");
+                },
+                title: "Articles",
+                subTitle: "Top SST topics."),
             const CustomListArticle(),
           ],
         ),

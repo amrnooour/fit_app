@@ -31,7 +31,7 @@ class Data {
   String? clientInvitationCode;
   String? status;
   List<Packages>? packages;
-  Null? settings;
+  Null settings;
   String? token;
   String? firebaseTopic;
 
@@ -91,7 +91,7 @@ class Data {
 class Packages {
   int? id;
   String? status;
-  Null? statusNote;
+  Null statusNote;
   String? paidAmount;
   String? startAt;
   String? expireAt;

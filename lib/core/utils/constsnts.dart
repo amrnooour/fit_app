@@ -12,6 +12,7 @@ abstract class Constants {
   static const homeData = "data/screens/home";
   static const updateProfile = "domains/auth/update-profile";
   static const successStories = "domains/blog/success-stories";
+  static const articles = "domains/blog/articles";
   static const mobile = "mobile";
   static const code = "code";
   static const token = "token";

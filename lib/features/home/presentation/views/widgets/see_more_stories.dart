@@ -1,4 +1,4 @@
-import 'package:fit_app/features/home/presentation/views/widgets/see_more_stories_view_body.dart';
+import 'package:fit_app/features/home/presentation/views/widgets/see_more_stories_body.dart';
 import 'package:flutter/material.dart';
 
 class SeeMoreStoriesView extends StatelessWidget {

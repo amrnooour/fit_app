@@ -1,4 +1,6 @@
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/core/utils/constsnts.dart';
+import 'package:fit_app/features/home/data/models/stories_details_model.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_states.dart';
 import 'package:fit_app/features/home/presentation/views/widgets/custom_item_article.dart';
@@ -35,6 +37,16 @@ class CustomListArticle extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: cubit.homeModel!.data.articles.length,
                   itemBuilder: (context, index) => CustomItemArticle(
+                      onTap: () {
+                        customNavigation(
+                          context,
+                          "/detailsStories",
+                          extra: StoriesDetailsModel(
+                            image: Constants.articleImage,
+                             clientName: cubit.homeModel!.data.articles[index].title,
+                              subTitle: cubit.homeModel!.data.articles[index].date)
+                        );
+                      },
                       imageUrl: Constants.articleImage,
                       name: cubit.homeModel!.data.articles[index].title,
                       subTitle: cubit.homeModel!.data.articles[index].date),

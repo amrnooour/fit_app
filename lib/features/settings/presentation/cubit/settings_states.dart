@@ -1,4 +1,3 @@
-import 'package:fit_app/features/settings/data/models/update_model.dart';
 
 class SettingsStates {}
 

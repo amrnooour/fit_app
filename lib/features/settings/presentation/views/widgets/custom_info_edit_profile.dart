@@ -1,5 +1,4 @@
 import 'package:fit_app/core/cache/cache_helper.dart';
-import 'package:fit_app/core/utils/constsnts.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_text_field.dart';
 import 'package:fit_app/features/settings/presentation/cubit/settings_cubit.dart';

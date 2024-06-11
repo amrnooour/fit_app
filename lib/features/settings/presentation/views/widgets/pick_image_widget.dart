@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:fit_app/core/cache/cache_helper.dart';
 import 'package:fit_app/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:fit_app/features/settings/presentation/cubit/settings_states.dart';
 import 'package:fit_app/features/settings/presentation/views/widgets/custom_circular_avatar.dart';
