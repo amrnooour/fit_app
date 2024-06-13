@@ -6,8 +6,11 @@ class ThroughtsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ThroughtViewBody(),
+    return Scaffold(
+      backgroundColor: Colors.grey.withOpacity(.1),
+      appBar: AppBar(title: const Text("Thoughts"), centerTitle: true,elevation: 0,
+      backgroundColor: Colors.white,),
+      body: const ThroughtViewBody(),
     );
   }
 }

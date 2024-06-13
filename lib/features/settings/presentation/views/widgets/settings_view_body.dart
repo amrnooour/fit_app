@@ -1,3 +1,5 @@
+import 'package:fit_app/core/cache/cache_helper.dart';
+import 'package:fit_app/core/functions/navigations.dart';
 import 'package:fit_app/features/login/presentation/views/widgets/custom_login_button.dart';
 import 'package:fit_app/features/settings/presentation/views/widgets/custom_account_settings.dart';
 import 'package:fit_app/features/settings/presentation/views/widgets/custom_general_settings.dart';
@@ -34,11 +36,17 @@ class SettingsViewBody extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: CustomLoginButton(
-                text: "Logout",
-                isEnabled: true,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: GestureDetector(
+                onTap: () {
+                  CacheHelper().clearData(key: "token");
+                  customNavigation(context, "/loginView");
+                },
+                child: const CustomLoginButton(
+                  text: "Logout",
+                  isEnabled: true,
+                ),
               ),
             ),
             const SizedBox(
