@@ -1,3 +1,4 @@
+import 'package:fit_app/core/utils/app_assets.dart';
 import 'package:fit_app/core/utils/constsnts.dart';
 import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_item_post.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,18 @@ class ThroughtViewBody extends StatelessWidget {
             height: 15,
           ),
           CustomItemPost(
-            imageUrl: Constants.networkImage,
+            videoUrl: AppAssets.loginVideo,
           ),
           SizedBox(
             height: 15,
           ),
           CustomItemPost(),
+          SizedBox(
+            height: 15,
+          ),
+          CustomItemPost(
+            audioUrl: "audio1.mp3",
+          )
         ],
       ),
     );

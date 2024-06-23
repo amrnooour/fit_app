@@ -3,10 +3,13 @@ import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_row_
 import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_row_of_name.dart';
 import 'package:flutter/material.dart';
 
+
 class CustomItemPost extends StatelessWidget {
   final String? imageUrl;
+  final String? videoUrl;
+  final String? audioUrl;
 
-  const CustomItemPost({super.key, this.imageUrl});
+ const CustomItemPost({super.key, this.imageUrl, this.videoUrl, this.audioUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,8 @@ class CustomItemPost extends StatelessWidget {
           ),
           CustomImageOrVideo(
             imageUrl: imageUrl,
+            videoUrl: videoUrl,
+            audioUrl: audioUrl,
           ),
           const SizedBox(
             height: 30,
