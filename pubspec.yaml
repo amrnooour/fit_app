@@ -48,6 +48,7 @@ dependencies:
   mobile_device_identifier: ^0.0.2
   device_uuid: ^0.0.4
   audioplayers: ^6.0.0
+  audio_waveforms: ^1.0.5
 
 
 

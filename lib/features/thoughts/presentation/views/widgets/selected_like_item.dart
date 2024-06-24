@@ -12,8 +12,8 @@ class SelectedLikeItem extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 35,
-            width: 35,
+            height: 25,
+            width: 25,
             decoration: BoxDecoration(
                 color: Colors.blue, borderRadius: BorderRadius.circular(20)),
             child: const Center(

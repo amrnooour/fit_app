@@ -1,16 +1,14 @@
-import 'package:video_player/video_player.dart';
-
 class ThoughtsStates {}
 
 class ThoughtsIntial extends ThoughtsStates {}
 
-class VideoLoading extends ThoughtsStates {}
+class ThoughtsLoading extends ThoughtsStates {}
 
-class VideoLoaded extends ThoughtsStates {
-  VideoPlayerController controller;
-  VideoLoaded(this.controller);
+class ThoughtsFailure extends ThoughtsStates {
+  final String errorMessage;
+
+  ThoughtsFailure({required this.errorMessage});
+
 }
 
-class VideoPlay extends ThoughtsStates {}
-
-class VidepPause extends ThoughtsStates {}
+class ThoughtsSuccess extends ThoughtsStates {}

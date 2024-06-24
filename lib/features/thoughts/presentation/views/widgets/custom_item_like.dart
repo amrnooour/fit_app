@@ -12,7 +12,7 @@ class CustomItemLike extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-        Icon(icon,size: 30,),
+        Icon(icon,size: 20,),
         const SizedBox(width: 9,),
         Text(text),
       ],),

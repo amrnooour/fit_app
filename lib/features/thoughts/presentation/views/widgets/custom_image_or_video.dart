@@ -22,7 +22,8 @@ class CustomImageOrVideo extends StatelessWidget {
                 )
               : imageUrl==null && audioUrl ==null? 
               VideoItem(videoUrl: videoUrl!)
-              :audioUrl==null? Image.network(
+              :audioUrl==null? 
+              Image.network(
                   height: height * .4,
                   width: width * width,
                   imageUrl!,

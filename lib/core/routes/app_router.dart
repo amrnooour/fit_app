@@ -7,6 +7,7 @@ import 'package:fit_app/features/login/presentation/views/login_view.dart';
 import 'package:fit_app/features/login/presentation/views/second_login_view.dart';
 import 'package:fit_app/features/settings/presentation/views/widgets/edit_view.dart';
 import 'package:fit_app/features/splash/splash.dart';
+import 'package:fit_app/features/thoughts/presentation/views/widgets/image_details.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(routes: [
@@ -19,6 +20,9 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(path: "/detailsStories",builder: (context, state) 
   => DetailsOfStories(storiesDetailsModel: state.extra as StoriesDetailsModel,),),
   GoRoute(path: "/seeMoreArticles",builder: (context, state) => const SeeMoreArticlesView(),),
+  GoRoute(path: "/imageDetails",builder: (context, state) => 
+  ImageDetails(image: state.extra as String,),),
+
 
 
 

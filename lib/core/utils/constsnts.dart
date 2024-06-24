@@ -13,6 +13,7 @@ abstract class Constants {
   static const updateProfile = "domains/auth/update-profile";
   static const successStories = "domains/blog/success-stories";
   static const articles = "domains/blog/articles";
+  static const getMedia = "domains/blog/news-feeds";
   static const mobile = "mobile";
   static const code = "code";
   static const token = "token";

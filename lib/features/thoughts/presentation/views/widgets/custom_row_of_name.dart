@@ -1,30 +1,42 @@
-import 'package:fit_app/core/utils/constsnts.dart';
+import 'package:fit_app/features/thoughts/data/models/profile_info_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomRowOfName extends StatelessWidget {
-  const CustomRowOfName({super.key});
+  final String profileImage;
+  final String name;
+  final String weeks;
+  const CustomRowOfName({super.key, required this.profileImage, required this.name, required this.weeks});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Row(children: [
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),
-          image: const DecorationImage(image: NetworkImage(Constants.networkImage1),fit: BoxFit.cover))
+      child: Row(
+        children: [
+          Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  image: DecorationImage(
+                      image: NetworkImage(profileImage), fit: BoxFit.cover))),
+          const SizedBox(
+            width: 12,
           ),
-        const SizedBox(width: 12,),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text("nour"),
-          Text("2 weeks ago"),
-        ],),
-        const Spacer(),
-        const Icon(Icons.delete,color: Colors.grey,),
-      ],),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name),
+              Text(weeks),
+            ],
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.delete,
+            color: Colors.grey,
+          ),
+        ],
+      ),
     );
   }
 }

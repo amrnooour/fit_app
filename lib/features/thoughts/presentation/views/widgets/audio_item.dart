@@ -12,9 +12,32 @@ class AudioItem extends StatefulWidget {
 class _AudioItemState extends State<AudioItem> {
   late AudioPlayer audioPlayer;
   bool isPlaying = false;
+  Duration duration = Duration.zero;
+  Duration position = Duration.zero;
+   String formatTime(int seconds) {
+    return '${(Duration(seconds: seconds))}'.split('.')[0].padLeft(8, '0');
+  }
+
   @override
   void initState() {
     audioPlayer = AudioPlayer();
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    audioPlayer.onPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition;
+      });
+    });
     super.initState();
   }
 
@@ -26,14 +49,34 @@ class _AudioItemState extends State<AudioItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: IconButton(
-          onPressed: togglePlayPause,
-          icon: Icon(
-            isPlaying ? Icons.pause : Icons.play_arrow,
-            size: 30,
-            color: Colors.black,
-          )),
+    return Column(
+      children: [
+        Slider(
+            min: 0,
+            max: duration.inSeconds.toDouble(),
+            value: position.inSeconds.toDouble(),
+            onChanged: (value) {
+              final postion = Duration(seconds: value.toInt());
+              audioPlayer.seek(postion);
+              audioPlayer.resume();
+            }),
+            SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(formatTime(position.inSeconds)),
+                  IconButton(
+                  onPressed: togglePlayPause,
+                  icon: Icon(
+                     isPlaying ? Icons.pause : Icons.play_arrow,
+                      size: 30,
+                      color: Colors.black,
+                 )),
+                  Text(formatTime((duration - position).inSeconds)),
+                ],
+              ),
+            ),
+      ],
     );
   }
 
