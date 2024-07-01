@@ -16,7 +16,7 @@ class CustomListView extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        if (state is StoresFailure) {
+        if (state is HomeFailure) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         } else if (state is HomeLoading) {
@@ -33,13 +33,13 @@ class CustomListView extends StatelessWidget {
             child: state is HomeSuccess
                 ? ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: cubit.homeModel!.data.sliders.length,
+                    itemCount: 3,
                     itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: CustomListItem(
                               imageUrl: index == 0
                                   ? Constants.networkImage
-                                  : cubit.homeModel!.data.sliders[index].media.url,
+                                  : cubit.homeModel!.data.sliders[index].media.url!,
                               title: cubit.homeModel!.data.sliders[index].title,
                               name: cubit.homeModel!.data.sliders[index].name,
                               description: cubit.homeModel!.data.sliders[index].description,

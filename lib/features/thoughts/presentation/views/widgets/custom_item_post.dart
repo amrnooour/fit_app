@@ -1,4 +1,3 @@
-import 'package:fit_app/features/thoughts/data/models/profile_info_model.dart';
 import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_image_or_video.dart';
 import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_row_of_like.dart';
 import 'package:fit_app/features/thoughts/presentation/views/widgets/custom_row_of_name.dart';

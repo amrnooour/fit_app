@@ -1,102 +1,64 @@
 class ArticlesModel {
   bool value;
-  Data data;
+  MyData data;
   int code;
 
-  ArticlesModel({
-    required this.value,
-    required this.data,
-    required this.code,
-  });
+  ArticlesModel({required this.value, required this.data, required this.code});
 
   factory ArticlesModel.fromJson(Map<String, dynamic> json) {
     return ArticlesModel(
       value: json['value'],
-      data: Data.fromJson(json['data']),
+      data: MyData.fromJson(json['data']),
       code: json['code'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      'data': data.toJson(),
-      'code': code,
-    };
-  }
 }
 
-// The Data class containing items and pagination info
-class Data {
-  List<Item> items;
-  Paginate paginate;
+class MyData {
+  List<MyItem> items;
+  MyPaginate paginate;
 
-  Data({
-    required this.items,
-    required this.paginate,
-  });
+  MyData({required this.items, required this.paginate});
 
-  factory Data.fromJson(Map<String, dynamic> json) {
+  factory MyData.fromJson(Map<String, dynamic> json) {
     var itemsList = json['items'] as List;
-    List<Item> items = itemsList.map((i) => Item.fromJson(i)).toList();
+    List<MyItem> items =
+        itemsList.map((itemJson) => MyItem.fromJson(itemJson)).toList();
 
-    return Data(
+    return MyData(
       items: items,
-      paginate: Paginate.fromJson(json['paginate']),
+      paginate: MyPaginate.fromJson(json['paginate']),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'items': items.map((i) => i.toJson()).toList(),
-      'paginate': paginate.toJson(),
-    };
-  }
 }
 
-// The Item class representing each item
-class Item {
+class MyItem {
   int id;
-  String clientName;
-  String subtitle;
+  String title;
   String content;
   String image;
   String date;
 
-  Item({
+  MyItem({
     required this.id,
-    required this.clientName,
-    required this.subtitle,
+    required this.title,
     required this.content,
     required this.image,
     required this.date,
   });
 
-  factory Item.fromJson(Map<String, dynamic> json) {
-    return Item(
+  factory MyItem.fromJson(Map<String, dynamic> json) {
+    return MyItem(
       id: json['id'],
-      clientName: json['client_name'],
-      subtitle: json['subtitle'],
+      title: json['title'],
       content: json['content'],
       image: json['image'],
       date: json['date'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'client_name': clientName,
-      'subtitle': subtitle,
-      'content': content,
-      'image': image,
-      'date': date,
-    };
-  }
 }
 
-// The Paginate class representing pagination information
-class Paginate {
+class MyPaginate {
   int total;
   int count;
   int perPage;
@@ -105,7 +67,7 @@ class Paginate {
   int currentPage;
   int totalPages;
 
-  Paginate({
+  MyPaginate({
     required this.total,
     required this.count,
     required this.perPage,
@@ -115,8 +77,8 @@ class Paginate {
     required this.totalPages,
   });
 
-  factory Paginate.fromJson(Map<String, dynamic> json) {
-    return Paginate(
+  factory MyPaginate.fromJson(Map<String, dynamic> json) {
+    return MyPaginate(
       total: json['total'],
       count: json['count'],
       perPage: json['per_page'],
@@ -125,17 +87,5 @@ class Paginate {
       currentPage: json['current_page'],
       totalPages: json['total_pages'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'total': total,
-      'count': count,
-      'per_page': perPage,
-      'next_page_url': nextPageUrl,
-      'prev_page_url': prevPageUrl,
-      'current_page': currentPage,
-      'total_pages': totalPages,
-    };
   }
 }

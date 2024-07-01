@@ -1,6 +1,6 @@
 class SuccessStoresModel {
   bool value;
-  Data data;
+  MyData data;
   int code;
 
   SuccessStoresModel({required this.value, required this.data, required this.code});
@@ -8,28 +8,31 @@ class SuccessStoresModel {
   factory SuccessStoresModel.fromJson(Map<String, dynamic> json) {
     return SuccessStoresModel(
       value: json['value'],
-      data: Data.fromJson(json['data']),
+      data: MyData.fromJson(json['data']),
       code: json['code'],
     );
   }
 }
 
-class Data {
-  List<Item> items;
-  Paginate paginate;
+class MyData {
+  List<MyItem> items;
+  MyPaginate paginate;
 
-  Data({required this.items, required this.paginate});
+  MyData({required this.items, required this.paginate});
 
-  factory Data.fromJson(Map<String, dynamic> json) {
+  factory MyData.fromJson(Map<String, dynamic> json) {
     var itemsList = json['items'] as List;
-    return Data(
-      items: itemsList.map((i) => Item.fromJson(i)).toList(),
-      paginate: Paginate.fromJson(json['paginate']),
+    List<MyItem> items =
+        itemsList.map((itemJson) => MyItem.fromJson(itemJson)).toList();
+
+    return MyData(
+      items: items,
+      paginate: MyPaginate.fromJson(json['paginate']),
     );
   }
 }
 
-class Item {
+class MyItem {
   int id;
   String clientName;
   String subtitle;
@@ -37,7 +40,7 @@ class Item {
   String image;
   String date;
 
-  Item({
+  MyItem({
     required this.id,
     required this.clientName,
     required this.subtitle,
@@ -46,8 +49,8 @@ class Item {
     required this.date,
   });
 
-  factory Item.fromJson(Map<String, dynamic> json) {
-    return Item(
+  factory MyItem.fromJson(Map<String, dynamic> json) {
+    return MyItem(
       id: json['id'],
       clientName: json['client_name'],
       subtitle: json['subtitle'],
@@ -58,7 +61,7 @@ class Item {
   }
 }
 
-class Paginate {
+class MyPaginate {
   int total;
   int count;
   int perPage;
@@ -67,7 +70,7 @@ class Paginate {
   int currentPage;
   int totalPages;
 
-  Paginate({
+  MyPaginate({
     required this.total,
     required this.count,
     required this.perPage,
@@ -77,8 +80,8 @@ class Paginate {
     required this.totalPages,
   });
 
-  factory Paginate.fromJson(Map<String, dynamic> json) {
-    return Paginate(
+  factory MyPaginate.fromJson(Map<String, dynamic> json) {
+    return MyPaginate(
       total: json['total'],
       count: json['count'],
       perPage: json['per_page'],

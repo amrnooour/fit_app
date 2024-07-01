@@ -1,9 +1,13 @@
 class HomeModel {
-  final bool value;
-  final Data data;
-  final int code;
+  bool value;
+  Data data;
+  int code;
 
-  HomeModel({required this.value, required this.data, required this.code});
+  HomeModel({
+    required this.value,
+    required this.data,
+    required this.code,
+  });
 
   factory HomeModel.fromJson(Map<String, dynamic> json) {
     return HomeModel(
@@ -12,25 +16,17 @@ class HomeModel {
       code: json['code'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      'data': data.toJson(),
-      'code': code,
-    };
-  }
 }
 
 class Data {
-  final String freeSubscriptionPeriod;
-  final Referrals referrals;
-  final List<Slider> sliders;
-  final List<Program> programs;
-  final List<dynamic> exams;
-  final NewsFeed newsFeeds;
-  final List<SuccessStory> successStories;
-  final List<Article> articles;
+  String freeSubscriptionPeriod;
+  Referrals referrals;
+  List<Slider> sliders;
+  List<Program> programs;
+  List<Exam> exams;
+  NewsFeed newsFeeds;
+  List<SuccessStory> successStories;
+  List<Article> articles;
 
   Data({
     required this.freeSubscriptionPeriod,
@@ -44,37 +40,42 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) {
+    var slidersList = json['sliders'] as List;
+    List<Slider> sliders = slidersList.map((i) => Slider.fromJson(i)).toList();
+
+    var programsList = json['programs'] as List;
+    List<Program> programs = programsList.map((i) => Program.fromJson(i)).toList();
+
+    var examsList = json['exams'] as List;
+    List<Exam> exams = examsList.map((i) => Exam.fromJson(i)).toList();
+
+    var successStoriesList = json['success_stories'] as List;
+    List<SuccessStory> successStories = successStoriesList.map((i) => SuccessStory.fromJson(i)).toList();
+
+    var articlesList = json['articles'] as List;
+    List<Article> articles = articlesList.map((i) => Article.fromJson(i)).toList();
+
     return Data(
       freeSubscriptionPeriod: json['free_subscription_period'],
       referrals: Referrals.fromJson(json['referrals']),
-      sliders: List<Slider>.from(json['sliders'].map((item) => Slider.fromJson(item))),
-      programs: List<Program>.from(json['programs'].map((item) => Program.fromJson(item))),
-      exams: List<dynamic>.from(json['exams']),
+      sliders: sliders,
+      programs: programs,
+      exams: exams,
       newsFeeds: NewsFeed.fromJson(json['news_feeds']),
-      successStories: List<SuccessStory>.from(json['success_stories'].map((item) => SuccessStory.fromJson(item))),
-      articles: List<Article>.from(json['articles'].map((item) => Article.fromJson(item))),
+      successStories: successStories,
+      articles: articles,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'free_subscription_period': freeSubscriptionPeriod,
-      'referrals': referrals.toJson(),
-      'sliders': sliders.map((item) => item.toJson()).toList(),
-      'programs': programs.map((item) => item.toJson()).toList(),
-      'exams': exams,
-      'news_feeds': newsFeeds.toJson(),
-      'success_stories': successStories.map((item) => item.toJson()).toList(),
-      'articles': articles.map((item) => item.toJson()).toList(),
-    };
   }
 }
 
 class Referrals {
-  final int count;
-  final int subscribed;
+  int count;
+  int subscribed;
 
-  Referrals({required this.count, required this.subscribed});
+  Referrals({
+    required this.count,
+    required this.subscribed,
+  });
 
   factory Referrals.fromJson(Map<String, dynamic> json) {
     return Referrals(
@@ -82,25 +83,18 @@ class Referrals {
       subscribed: json['subscribed'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'count': count,
-      'subscribed': subscribed,
-    };
-  }
 }
 
 class Slider {
-  final int id;
-  final String title;
-  final String buttonText;
-  final String name;
-  final String description;
-  final String type;
-  final dynamic modelId;
-  final dynamic externalLink;
-  final Media media;
+  int id;
+  String title;
+  String buttonText;
+  String name;
+  String description;
+  String type;
+  int? modelId;
+  String? externalLink;
+  Media media;
 
   Slider({
     required this.id,
@@ -121,33 +115,22 @@ class Slider {
       buttonText: json['button_text'],
       name: json['name'],
       description: json['description'],
-      type: json['type'],
+      type: json['type'] ?? '',
       modelId: json['model_id'],
       externalLink: json['external_link'],
       media: Media.fromJson(json['media']),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'button_text': buttonText,
-      'name': name,
-      'description': description,
-      'type': type,
-      'model_id': modelId,
-      'external_link': externalLink,
-      'media': media.toJson(),
-    };
-  }
 }
 
 class Media {
-  final String type;
-  final String url;
+  String? type;
+  String? url;
 
-  Media({required this.type, required this.url});
+  Media({
+    this.type,
+    this.url,
+  });
 
   factory Media.fromJson(Map<String, dynamic> json) {
     return Media(
@@ -155,24 +138,17 @@ class Media {
       url: json['url'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'url': url,
-    };
-  }
 }
 
 class Program {
-  final int id;
-  final String name;
-  final String type;
-  final String day;
-  final String month;
-  final String image;
-  final String video;
-  final String file;
+  int id;
+  String name;
+  String type;
+  String day;
+  String month;
+  String image;
+  String video;
+  String file;
 
   Program({
     required this.id,
@@ -192,45 +168,67 @@ class Program {
       type: json['type'],
       day: json['day'],
       month: json['month'],
-      image: json['image'] ?? '',
-      video: json['video'] ?? '',
-      file: json['file'] ?? '',
+      image: json['image'],
+      video: json['video'],
+      file: json['file'],
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'type': type,
-      'day': day,
-      'month': month,
-      'image': image,
-      'video': video,
-      'file': file,
-    };
+class Exam {
+  int id;
+  String name;
+  String type;
+  String day;
+  String month;
+  String image;
+  String video;
+  String file;
+
+  Exam({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.day,
+    required this.month,
+    required this.image,
+    required this.video,
+    required this.file,
+  });
+
+  factory Exam.fromJson(Map<String, dynamic> json) {
+    return Exam(
+      id: json['id'],
+      name: json['name'],
+      type: json['type'],
+      day: json['day'],
+      month: json['month'],
+      image: json['image'],
+      video: json['video'],
+      file: json['file'],
+    );
   }
 }
 
 class NewsFeed {
-  final int id;
-  final String title;
-  final String? subtitle;
-  final String content;
-  final int likesCount;
-  final int likesCountAbbreviate;
-  final int commentsCount;
-  final bool isLiked;
-  final dynamic reaction;
-  final String type;
-  final NewsFeedMedia media;
-  final List<dynamic> challengeMedia;
-  final String date;
-  final String time;
-  final String utc;
-  final bool ready;
-  final String clientTag;
-  final String clientTagColor;
+  int id;
+  String title;
+  String? subtitle;
+  String content;
+  int likesCount;
+  int likesCountAbbreviate;
+  int commentsCount;
+  bool isLiked;
+  String? reaction;
+  String type;
+  Media media;
+  List<dynamic> challengeMedia;
+  String date;
+  String time;
+  String utc;
+  bool ready;
+  String clientTag;
+  String clientTagColor;
 
   NewsFeed({
     required this.id,
@@ -265,8 +263,8 @@ class NewsFeed {
       isLiked: json['is_liked'],
       reaction: json['reaction'],
       type: json['type'],
-      media: NewsFeedMedia.fromJson(json['media']),
-      challengeMedia: List<dynamic>.from(json['challenge_media']),
+      media: Media.fromJson(json['media']),
+      challengeMedia: json['challenge_media'],
       date: json['date'],
       time: json['time'],
       utc: json['utc'],
@@ -275,70 +273,15 @@ class NewsFeed {
       clientTagColor: json['client_tag_color'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'subtitle': subtitle,
-      'content': content,
-      'likes_count': likesCount,
-      'likes_count_abbreviate': likesCountAbbreviate,
-      'comments_count': commentsCount,
-      'is_liked': isLiked,
-      'reaction': reaction,
-      'type': type,
-      'media': media.toJson(),
-      'challenge_media': challengeMedia,
-      'date': date,
-      'time': time,
-      'utc': utc,
-      'ready': ready,
-      'client_tag': clientTag,
-      'client_tag_color': clientTagColor,
-    };
-  }
-}
-
-class NewsFeedMedia {
-  final String thumbnail;
-  final String? url;
-  final String length;
-  final String seconds;
-
-  NewsFeedMedia({
-    required this.thumbnail,
-    this.url,
-    required this.length,
-    required this.seconds,
-  });
-
-  factory NewsFeedMedia.fromJson(Map<String, dynamic> json) {
-    return NewsFeedMedia(
-      thumbnail: json['thumbnail'],
-      url: json['url'],
-      length: json['length'],
-      seconds: json['seconds'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'thumbnail': thumbnail,
-      'url': url,
-      'length': length,
-      'seconds': seconds,
-    };
-  }
 }
 
 class SuccessStory {
-  final int id;
-  final String clientName;
-  final String subtitle;
-  final String content;
-  final String image;
-  final String date;
+  int id;
+  String clientName;
+  String subtitle;
+  String content;
+  String image;
+  String date;
 
   SuccessStory({
     required this.id,
@@ -359,29 +302,20 @@ class SuccessStory {
       date: json['date'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'client_name': clientName,
-      'subtitle': subtitle,
-      'content': content,
-      'image': image,
-      'date': date,
-    };
-  }
 }
 
 class Article {
-  final int id;
-  final String title;
-  final String content;
-  final String date;
+  int id;
+  String title;
+  String content;
+  String image;
+  String date;
 
   Article({
     required this.id,
     required this.title,
     required this.content,
+    required this.image,
     required this.date,
   });
 
@@ -390,16 +324,8 @@ class Article {
       id: json['id'],
       title: json['title'],
       content: json['content'],
+      image: json['image'],
       date: json['date'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'content': content,
-      'date': date,
-    };
   }
 }

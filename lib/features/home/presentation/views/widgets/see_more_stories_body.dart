@@ -1,4 +1,5 @@
 import 'package:fit_app/core/functions/navigations.dart';
+import 'package:fit_app/core/utils/constsnts.dart';
 import 'package:fit_app/features/home/data/models/stories_details_model.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:fit_app/features/home/presentation/cubit/home_states.dart';
@@ -47,13 +48,13 @@ class _SeeMoreStoriesViewBodyState extends State<SeeMoreStoriesViewBody> {
                           onTap: () {
                             customNavigation(context, "/detailsStories",
                             extra: StoriesDetailsModel(
-                              image: cubit.storesModel!.data.items[index].image,
+                              image: Constants.networkImage,
                               clientName: cubit.storesModel!.data.items[index].clientName,
                               subTitle: cubit.storesModel!.data.items[index].subtitle
                             ));
                           },
                           height1: height * .15,
-                          imageUrl: cubit.storesModel!.data.items[index].image,
+                          imageUrl: Constants.networkImage,
                           name: cubit.storesModel!.data.items[index].clientName,
                           subTitle:
                               cubit.storesModel!.data.items[index].subtitle),

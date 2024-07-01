@@ -1,4 +1,3 @@
-import 'package:fit_app/features/thoughts/data/models/profile_info_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomRowOfName extends StatelessWidget {
